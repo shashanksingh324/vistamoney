@@ -1,0 +1,35 @@
+.general-page {
+    background-color: white;
+    border-radius: 10px;
+    height: 100%;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+hr {
+    margin: 5px 0px 15px !important;
+}
+
+.employee.general-page {
+    ::ng-deep {
+        .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+            top: calc(var(--mat-form-field-container-height, 40px) / 2) !important;
+        }
+
+        .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
+            padding-top: var(--mat-form-field-container-vertical-padding, 10px) !important;
+            padding-bottom: var(--mat-form-field-container-vertical-padding, 10px) !important;
+            min-height: var(--mat-form-field-container-height, 40px) !important;
+        }
+        .mat-mdc-outlined-button {
+            border-radius: var(--mdc-outlined-button-container-shape, var(--mat-sys-corner-small)) !important;
+        }
+    }
+    .btn-container {
+        display: flex;
+        flex-direction: row-reverse;
+        button {
+            margin-left: 15px;
+        }
+    }
+}

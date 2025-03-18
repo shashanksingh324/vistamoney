@@ -1,0 +1,49 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    background-color: #1976d2;
+}
+
+mat-icon, .toolbar-text {
+    color: white;
+}
+
+.example-container {
+    height: calc(100% - 65px);
+}
+
+.example-sidenav-content {
+    background-color: #dbdbdb;
+    padding: 20px;
+    height: calc(100% - 1px);
+}
+
+.example-sidenav {
+    padding: 20px;
+    width: 250px;
+}
+
+.admin-menu button {
+    width: 100%;
+    margin-right: 0;
+    color: #697081;
+    padding: 14px 22px;
+    border-radius: 0;
+    text-align: left;
+}
+
+.admin-menu .active button .active {
+    color: #24282b;
+}
+
+.admin-menu .active:before {
+    height: 49px;
+    width: 3px;
+    background: #e60479;
+    content: "";
+    position: absolute;
+    left: 0;
+    border-radius: 3px;
+}

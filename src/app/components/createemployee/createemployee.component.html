@@ -1,0 +1,384 @@
+<div class="employee general-page" [formGroup]="userForm">
+    <div class="row">
+        <div class="col">
+            <mat-label>Personal Details</mat-label>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Merchant Id</mat-label>
+                <mat-select formControlName="merchant_id" (ngModelChange)="getVendors($event)">
+                    <mat-option value="">Select Merchant id</mat-option>
+                    @for (merchant of merchants; track merchant) {
+                    <mat-option [value]="merchant.mid">{{merchant.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>User Type</mat-label>
+                <mat-select formControlName="userType" (ngModelChange)="getIdTypeList($event)">
+                    <mat-option value="">Select User type</mat-option>
+                    @for (userType of dropdownVal.userTypesList; track userType) {
+                    <mat-option [value]="userType?.id">{{userType?.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Vendor</mat-label>
+                <mat-select formControlName="vendor" [disabled]="!userForm.value.merchant_id" multiple>
+                    @for (vendor of vendors; track vendors) {
+                    <mat-option [value]="vendor.vendorId">{{vendor.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Your Currency</mat-label>
+                <mat-select formControlName="your_currency" multiple>
+                    @for (currency of dropdownVal.currencyList; track currency) {
+                    <mat-option [value]="currency.currency_code">{{currency.currency_name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Nick Name</mat-label>
+                <input matInput placeholder="Nick Name" formControlName="nick_name">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="firstName">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            @if(userForm.value.userType == 'I') {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Middle Name</mat-label>
+                <input matInput placeholder="Middle Name" formControlName="middleName">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            @if(userForm.value.userType == 'I') {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name" formControlName="lastName">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            @if(userForm.value.userType == 'I') {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Sencond Last Name</mat-label>
+                <input matInput placeholder="Sencond Last Name" formControlName="sencondLastName">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Id Type</mat-label>
+                <mat-select formControlName="idType">
+                    <mat-option value="">Select id type</mat-option>
+                    @for (idType of idTypeList; track idType) {
+                    <mat-option [value]="idType?.name">{{idType?.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Id Number</mat-label>
+                <input matInput placeholder="Id Number" formControlName="idNumber">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Id Issue date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="idIssue_date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Id Expiry date</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="idExpiry_date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Id Issue Country</mat-label>
+                <mat-select formControlName="idIssueCountry">
+                    <mat-option value="">Select Country</mat-option>
+                    @for (country of dropdownVal.countryList; track country) {
+                    <mat-option [value]="country.id">{{country.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Id Number" formControlName="email">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Contact Number</mat-label>
+                <input matInput placeholder="Contact Number" formControlName="contactNumber">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country" (ngModelChange)="getStateList($event)">
+                    <mat-option value="">Select country</mat-option>
+                    @for (country of dropdownVal.countryList; track country) {
+                    <mat-option [value]="country.id">{{country.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            @if(userForm.value.vendor.indexOf('v100007') > -1) {
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state" (ngModelChange)="getAreaList($event)">
+                    <mat-option value="">Select State</mat-option>
+                    @for (state of stateList; track state) {
+                    <mat-option [value]="state.data">{{state.value}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            @if(userForm.value.vendor.indexOf('v100007') > -1) {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="City" formControlName="city">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Area</mat-label>
+                <mat-select formControlName="area">
+                    <mat-option value="">Select area</mat-option>
+                    @for (area of areaList; track area) {
+                    <mat-option [value]="area.name">{{area.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="City" formControlName="address">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Zip</mat-label>
+                <input matInput placeholder="Zip" formControlName="zip">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            @if(userForm.value.userType == 'I') {
+            <mat-form-field appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="area">
+                    <mat-option value="">Select Gender</mat-option>
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                </mat-select>
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Date of birth</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="date_of_birth">
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Country of birth</mat-label>
+                <mat-select formControlName="country_of_birth">
+                    <mat-option value="">Select Country</mat-option>
+                    @for (country of dropdownVal.countryList; track country) {
+                    <mat-option [value]="country.id">{{country.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Residency</mat-label>
+                <mat-select formControlName="residency">
+                    <mat-option value="">Select Country</mat-option>
+                    @for (country of dropdownVal.countryList; track country) {
+                    <mat-option [value]="country.id">{{country.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Citizenship</mat-label>
+                <mat-select formControlName="citizenship">
+                    <mat-option value="">Select citizenship</mat-option>
+                    @for (country of dropdownVal.countryList; track country) {
+                    <mat-option [value]="country.id">{{country.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Occupation</mat-label>
+                <mat-select formControlName="occupation">
+                    <mat-option value="">Select occupation</mat-option>
+                    @for (occupation of dropdownVal.occupationsList; track occupation) {
+                    <mat-option [value]="occupation.name">{{occupation.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Source Of Fund</mat-label>
+                <mat-select formControlName="sourceOfFund">
+                    <mat-option value="">Select Source Of Fund</mat-option>
+                    @for (sourceOfFund of dropdownVal.sourceOfFund; track sourceOfFund) {
+                    <mat-option [value]="sourceOfFund">{{sourceOfFund}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            @if(userForm.value.userType == 'B') {
+            <mat-form-field appearance="outline">
+                <mat-label>Intity Type</mat-label>
+                <mat-select formControlName="sourceOfFund">
+                    <mat-option value="">Select Intity Type</mat-option>
+                    @for (intityType of dropdownVal.intityType; track intityType) {
+                    <mat-option [value]="intityType">{{intityType}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @if(userForm.value.userType == 'B') {
+            <mat-form-field appearance="outline">
+                <mat-label>Business type</mat-label>
+                <input matInput placeholder="Id Number" formControlName="business_type">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Id Type 2</mat-label>
+                <mat-select formControlName="idType_2">
+                    <mat-option value="">Select id type</mat-option>
+                    @for (idType of idTypeList; track idType) {
+                    <mat-option [value]="idType?.name">{{idType?.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Id Number 2</mat-label>
+                <input matInput placeholder="Id Number" formControlName="idNumber_2">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            @if(userForm.value.vendor.indexOf('v100007') > -1) {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>First Name Native</mat-label>
+                <input matInput placeholder="First Name Native" formControlName="firstName_native">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            @if(userForm.value.vendor.indexOf('v100007') > -1 && userForm.value.userType == 'I') {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Middle Name Native</mat-label>
+                <input matInput placeholder="Middle Name Native" formControlName="middleName_native">
+            </mat-form-field>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @if(userForm.value.vendor.indexOf('v100007') > -1 && userForm.value.userType == 'I') {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Last Name Native</mat-label>
+                <input matInput placeholder="Last Name Native" formControlName="lastName_native">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            @if(userForm.value.vendor.indexOf('v100007') > -1) {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Address Native</mat-label>
+                <input matInput placeholder="address_native" formControlName="address_native">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Is politically exposed person</mat-label>
+                <mat-select formControlName="is_pep">
+                    <mat-option value="">Select </mat-option>
+                    <mat-option value="1">Yes </mat-option>
+                    <mat-option value="0">No </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col">
+            @if(userForm.value.is_pep == '1'){
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Politically exposed person Remark</mat-label>
+                <input matInput placeholder="Remark" formControlName="pep_remark">
+            </mat-form-field>
+            }
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="btn-container">
+        <button mat-stroked-button>Cancel</button>
+        <button mat-stroked-button (click)="saveUser()">Submit</button>
+        
+    </div>
+
+</div>
