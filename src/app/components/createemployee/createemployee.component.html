@@ -284,7 +284,7 @@
             @if(userForm.value.userType == 'B') {
             <mat-form-field appearance="outline">
                 <mat-label>Intity Type</mat-label>
-                <mat-select formControlName="sourceOfFund">
+                <mat-select formControlName="intityType">
                     <mat-option value="">Select Intity Type</mat-option>
                     @for (intityType of dropdownVal.intityType; track intityType) {
                     <mat-option [value]="intityType">{{intityType}}</mat-option>
