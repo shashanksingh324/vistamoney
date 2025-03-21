@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-employee',
-  imports: [NgxDatatableModule],
+  imports: [NgxDatatableModule, RouterLink, MatButtonModule,],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.scss'
 })
@@ -37,6 +39,10 @@ export class EmployeeComponent implements OnInit {
     this.http.get(url).subscribe(res => {
       console.log(res);
     })
+  }
+
+  createEmployee() {
+
   }
 
 }

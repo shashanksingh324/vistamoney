@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
 // import { UserService } from '../../core/services/user.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
@@ -34,7 +35,8 @@ export interface IVendor {
     MatDatepickerModule,
     ReactiveFormsModule,
     MatButtonModule,
-    ToastrModule
+    ToastrModule,
+    RouterLink
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './createemployee.component.html',

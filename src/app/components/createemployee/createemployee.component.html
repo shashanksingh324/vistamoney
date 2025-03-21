@@ -164,7 +164,7 @@
                 <mat-select formControlName="state" (ngModelChange)="getAreaList($event)">
                     <mat-option value="">Select State</mat-option>
                     @for (state of stateList; track state) {
-                    <mat-option [value]="state.data">{{state.value}}</mat-option>
+                    <mat-option [value]="state?.data">{{state?.value}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
@@ -184,7 +184,7 @@
                 <mat-select formControlName="area">
                     <mat-option value="">Select area</mat-option>
                     @for (area of areaList; track area) {
-                    <mat-option [value]="area.name">{{area.name}}</mat-option>
+                    <mat-option [value]="area.data">{{area.value}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
@@ -376,7 +376,7 @@
         <div class="col"></div>
     </div>
     <div class="btn-container">
-        <button mat-stroked-button>Cancel</button>
+        <button mat-stroked-button routerLink="/employee">Cancel</button>
         <button mat-stroked-button (click)="saveUser()">Submit</button>
         
     </div>
